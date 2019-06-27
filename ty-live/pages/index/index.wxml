@@ -8,6 +8,6 @@
     </block>
   </view>
   <view class='usermotto'>
-    <button class='btn' bindtap="liveRoom">视频通话</button>
+    <i-button type="primary" class='btn' bindtap="liveRoom">视频通话</i-button>
   </view>
 </view>

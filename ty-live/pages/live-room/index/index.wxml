@@ -1,1 +1,3 @@
-<i-input placeholder="请输入房间号"></i-input>
+<i-input value="{{roomId}}" bind:change='bindRoomId' autofocus placeholder="请输入房间号" />
+
+<i-button bindtap='joinRoom' type="primary">加入房间</i-button>

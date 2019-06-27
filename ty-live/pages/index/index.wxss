@@ -22,8 +22,3 @@
   width: 80vw;
 }
 
-.btn {
-  border-radius: 50px;
-  background-color: #006eff;
-  color: white;
-}
