@@ -1,5 +1,4 @@
 const app = getApp();
-const account = require('../account');
 
 const ROLE_TYPE = {
   AUDIENCE: 'audience',
@@ -21,7 +20,7 @@ Page({
     role: ROLE_TYPE.PRESENTER, // presenter 代表主播，audience 代表观众
     userId: '',
     userSig: '',
-    sdkAppID: account.sdkappid,
+    sdkAppID: 1400224062,
     isErrorModalShow: false,
     autoplay: true,
     enableCamera: true,
@@ -47,7 +46,7 @@ Page({
           title: '提示',
           content: e.detail.detail,
           showCancel: false,
-          complete: function () {
+          complete: function() {
             self.data.isErrorModalShow = false;
             self.goBack();
           }
@@ -59,7 +58,7 @@ Page({
   /**
    * 切换摄像头
    */
-  changeCamera: function () {
+  changeCamera: function() {
     this.data.webrtcroomComponent.switchCamera();
     this.setData({
       frontCamera: !this.data.frontCamera
@@ -69,7 +68,7 @@ Page({
   /**
    * 开启/关闭摄像头
    */
-  onEnableCameraClick: function () {
+  onEnableCameraClick: function() {
     this.data.enableCamera = !this.data.enableCamera;
     this.setData({
       enableCamera: this.data.enableCamera
@@ -80,7 +79,7 @@ Page({
   /**
    * 设置美颜
    */
-  setBeauty: function () {
+  setBeauty: function() {
     this.data.beauty = (this.data.beauty == 0 ? 9 : 0);
     this.setData({
       beauty: this.data.beauty
@@ -90,7 +89,7 @@ Page({
   /**
    * 切换是否静音
    */
-  changeMute: function () {
+  changeMute: function() {
     this.data.muted = !this.data.muted;
     this.setData({
       muted: this.data.muted
@@ -100,7 +99,7 @@ Page({
   /**
    * 是否显示日志
    */
-  showLog: function () {
+  showLog: function() {
     this.data.debug = !this.data.debug;
     this.setData({
       debug: this.data.debug
@@ -110,7 +109,7 @@ Page({
   /**
    * 进入房间
    */
-  joinRoom: function () {
+  joinRoom: function() {
     // 设置webrtc-room标签中所需参数，并启动webrtc-room标签
     this.setData({
       userID: this.data.userId,
@@ -138,7 +137,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.data.roomID = options.roomID || '';
     this.data.userId = options.userId;
     this.data.userSig = options.userSig;
@@ -161,14 +160,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var self = this;
     console.log('room.js onShow');
     // 保持屏幕常亮
@@ -180,35 +179,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
     console.log('room.js onHide');
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
     console.log('room.js onUnload');
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       // title: '',
       path: '/pages/webrtc-room/index/index',
@@ -217,7 +216,7 @@ Page({
   },
 
 
-  onBack: function () {
+  onBack: function() {
     wx.navigateBack({
       delta: 1
     });

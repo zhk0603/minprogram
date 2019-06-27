@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "图元 Live",
   "usingComponents": {
     "i-input": "/iview/input/index",
     "i-button": "/iview/button/index"

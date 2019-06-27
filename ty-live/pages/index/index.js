@@ -1,4 +1,3 @@
-const request = require('../../utils/request.js')
 //获取应用实例
 const app = getApp()
 
@@ -16,21 +15,6 @@ Page({
     })
   },
   onLoad: function() {
-
-    request({
-      url: '/api/userinfo',
-      method: "POST",
-      data: {
-        a: 'adsf'
-      },
-      header:{
-        'x-zhk':'zhk'
-      }
-    }).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
 
     if (app.globalData.userInfo) {
       this.setData({
