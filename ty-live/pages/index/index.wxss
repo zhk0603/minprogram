@@ -1,4 +1,5 @@
 /**index.wxss**/
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -18,4 +19,11 @@
 
 .usermotto {
   margin-top: 200px;
+  width: 80vw;
+}
+
+.btn {
+  border-radius: 50px;
+  background-color: #006eff;
+  color: white;
 }

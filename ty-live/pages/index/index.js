@@ -52,6 +52,8 @@ Page({
     })
   },
   liveRoom(){
-    console.log(123)
+    wx.navigateTo({
+      url: '../live-room/index/index'
+    })
   }
 })

@@ -12,12 +12,14 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.0",
-	"appid": "在这填写您的微信小程序AppID",
-	"projectname": "MiniProgram-TRTC",
+	"appid": "wx63ddb2b594b9cf77",
+	"projectname": "live-demo2",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

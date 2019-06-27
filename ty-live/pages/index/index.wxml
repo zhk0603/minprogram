@@ -7,7 +7,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text bindtap="liveRoom" class="user-motto">视频通话</text>
+  <view class='usermotto'>
+    <button class='btn' bindtap="liveRoom">视频通话</button>
   </view>
 </view>

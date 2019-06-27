@@ -9,5 +9,6 @@
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "腾讯视频云",
     "navigationBarTextStyle": "white"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
