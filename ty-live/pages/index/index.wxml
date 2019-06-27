@@ -8,6 +8,6 @@
     </block>
   </view>
   <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+    <text bindtap="liveRoom" class="user-motto">视频通话</text>
   </view>
 </view>
