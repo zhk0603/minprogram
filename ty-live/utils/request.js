@@ -16,7 +16,15 @@ let request = function(opt) {
       fail: (err) => {
         reject(err)
       },
-      complete: function(res) {},
+      complete: (res) => {
+        console.log(res)
+        if (res.statusCode !== 200) {
+          wx.showToast({
+            icon: 'warn',
+            title: res.errMsg,
+          })
+        }
+      },
     })
   })
 }

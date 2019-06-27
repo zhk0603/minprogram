@@ -1,3 +1,5 @@
+const roomApi = require('../../../api/room.js')
+
 const app = getApp();
 
 const ROLE_TYPE = {
@@ -110,14 +112,30 @@ Page({
    * 进入房间
    */
   joinRoom: function() {
-    // 设置webrtc-room标签中所需参数，并启动webrtc-room标签
-    this.setData({
-      userID: this.data.userId,
-      userSig: this.data.userSig,
-      sdkAppID: this.data.sdkAppID,
-      roomID: this.data.roomID
-    }, () => {
-      this.data.webrtcroomComponent.start();
+    roomApi.initRoom(this.data.roomID).then(res => {
+      if (res.success) {
+        roomApi.generateSig(this.data.userId).then(res => {
+
+          this.data.userSig = res.userToken
+          // 设置webrtc-room标签中所需参数，并启动webrtc-room标签
+          this.setData({
+            userID: this.data.userId,
+            userSig: this.data.userSig,
+            sdkAppID: this.data.sdkAppID,
+            roomID: this.data.roomID
+          }, () => {
+            this.data.webrtcroomComponent.start();
+          })
+
+        })
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.message || '',
+        })
+      }
+    }).catch(err => {
+      console.log(err)
     })
   },
 
@@ -138,15 +156,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.data.roomID = options.roomID || '';
-    this.data.userId = options.userId;
-    this.data.userSig = options.userSig;
-    this.data.template = options.template;
+    this.data.roomID = options.roomId;
+    this.data.userId = '';
+    this.data.userSig = '';
+    this.data.template = 'bigsmall' //options.template;
 
     this.data.webrtcroomComponent = this.selectComponent('#webrtcroom');
 
     this.setData({
-      template: options.template
+      template: 'bigsmall'
     });
 
     this.joinRoom();
