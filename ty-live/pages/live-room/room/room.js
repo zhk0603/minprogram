@@ -166,12 +166,12 @@ Page({
     this.data.roomID = options.roomId;
     this.data.userId = app.globalData.openId;
     this.data.userSig = '';
-    this.data.template = 'bigsmall' //options.template;
+    this.data.template = 'float' //options.template;
 
     this.data.webrtcroomComponent = this.selectComponent('#webrtcroom');
 
     this.setData({
-      template: 'bigsmall'
+      template: 'float'
     });
 
     app.openIdReadyCallback = res => {
