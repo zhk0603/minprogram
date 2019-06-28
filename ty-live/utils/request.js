@@ -11,17 +11,20 @@ let request = function(opt) {
       dataType: opt.dataType || 'json',
       responseType: opt.responseType || 'text',
       success: (res) => {
-        resolve(res)
+        if (res.statusCode == 200) {
+          resolve(res.data)
+        } else {
+          reject(res)
+        }
       },
       fail: (err) => {
         reject(err)
       },
       complete: (res) => {
-        console.log(res)
-        if (res.statusCode !== 200) {
+        if (res.statusCode !== 200 || !res.data.IsSuccess) {
           wx.showToast({
             icon: 'warn',
-            title: res.errMsg,
+            title: res.data.ErrorMessage || res.errMsg,
           })
         }
       },

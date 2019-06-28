@@ -112,26 +112,33 @@ Page({
    * 进入房间
    */
   joinRoom: function() {
-    roomApi.initRoom(this.data.roomID).then(res => {
-      if (res.success) {
-        roomApi.generateSig(this.data.userId).then(res => {
 
-          this.data.userSig = res.userToken
-          // 设置webrtc-room标签中所需参数，并启动webrtc-room标签
-          this.setData({
-            userID: this.data.userId,
-            userSig: this.data.userSig,
-            sdkAppID: this.data.sdkAppID,
-            roomID: this.data.roomID
-          }, () => {
-            this.data.webrtcroomComponent.start();
-          })
+    if (!this.data.userId) {
+      console.log('暂未获取到 userId')
+      return
+    }
+
+    roomApi.initRoom(this.data.roomID).then(res => {
+      if (res.IsSuccess) {
+        roomApi.generateSig(this.data.userId).then(res => {
+          if (res.IsSuccess) {
+            this.data.userSig = res.Data.token
+            // 设置webrtc-room标签中所需参数，并启动webrtc-room标签
+            this.setData({
+              userID: this.data.userId,
+              userSig: this.data.userSig,
+              sdkAppID: this.data.sdkAppID,
+              roomID: this.data.roomID
+            }, () => {
+              this.data.webrtcroomComponent.start();
+            })
+          }
 
         })
       } else {
         wx.showModal({
           title: '提示',
-          content: res.message || '',
+          content: res.ErrorMessage || '',
         })
       }
     }).catch(err => {
@@ -157,7 +164,7 @@ Page({
    */
   onLoad: function(options) {
     this.data.roomID = options.roomId;
-    this.data.userId = '';
+    this.data.userId = app.globalData.openId;
     this.data.userSig = '';
     this.data.template = 'bigsmall' //options.template;
 
@@ -166,6 +173,14 @@ Page({
     this.setData({
       template: 'bigsmall'
     });
+
+    app.openIdReadyCallback = res => {
+      this.setData({
+        userId: res.openid
+      }, () => {
+        this.joinRoom();
+      })
+    }
 
     this.joinRoom();
 

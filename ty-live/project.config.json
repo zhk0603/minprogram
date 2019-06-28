@@ -46,7 +46,7 @@
 					"id": 0,
 					"name": "join room",
 					"pathName": "pages/live-room/room/room",
-					"query": "roomId=abcefg",
+					"query": "roomId=6655",
 					"scene": null
 				}
 			]

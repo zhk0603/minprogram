@@ -2,13 +2,17 @@ const request = require('../utils/request.js')
 
 function initRoom(roomId) {
   return request({
-    url: '/api/room?roomId=' + roomId
+    url: '/Wechat/CheckRoom?roomId=' + roomId
   })
 }
 
 function generateSig(userId) {
   return request({
-    url: '/api/room/generateSig?userId=' + userId
+    url: '/Wechat/Sign',
+    method: 'POST',
+    data: {
+      identifier: userId
+    }
   })
 }
 

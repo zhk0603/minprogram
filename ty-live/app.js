@@ -1,20 +1,23 @@
 //app.js
-App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
 
+const loginApi = require('./api/login.js')
+
+App({
+  onLaunch: function() {
+    
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
 
-        // wx.request({
-        //   url: '',
-        // })
+        loginApi.login(res.code).then(res => {
+          let data = JSON.parse(res.Data)
+          this.globalData.openId = data.openid
 
+          if (this.openIdReadyCallback) {
+            this.openIdReadyCallback(data)
+          }
+        })
       }
     })
     // 获取用户信息
@@ -38,6 +41,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    openId: ''
   }
 })
